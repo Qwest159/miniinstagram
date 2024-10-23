@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('accueil', absolute: false));
+        return redirect()->intended(route('front.posts.index', absolute: false));
     }
 
     /**

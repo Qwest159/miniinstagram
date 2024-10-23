@@ -26,7 +26,7 @@
         </a>
     </nav>
 <main>
- <h1>   CECI EST MON INSTA ACCUEIL</h1>
+ <h1>   CECI EST MON INSTA accueil</h1>
 </main>
 </body>
 </html>

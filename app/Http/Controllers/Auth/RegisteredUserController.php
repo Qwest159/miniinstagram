@@ -45,6 +45,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('accueil', absolute: false));
+        return redirect(route('front.posts.index', absolute: false));
     }
 }
