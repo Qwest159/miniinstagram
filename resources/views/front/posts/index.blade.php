@@ -1,45 +1,43 @@
 <x-app-layout>
-
-    <div class="flex  items-center justify-center space-x-8">
+    <div class="flex items-center justify-center space-x-8 mb-6">
         <a
           href="{{ route('posts.create') }}"
-          class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition flex items-center"
+          class="text-white bg-blue-500 font-bold py-2 px-4 rounded hover:bg-blue-600 transition flex items-center"
         >
-        {{-- <x-heroicon-o-heart class="w-6 h-6 text-red-600" /> --}}
           Ajouter un post
         </a>
-      </div>
-    <h1 class="font-bold text-xl mb-4">Liste des posts</h1>
+    </div>
+
+    <h1 class="font-bold text-3xl mb-4 text-center">Liste des posts</h1>
 
     <form action="{{ route('front.posts.index') }}" method="GET" class="mb-4">
-      <div class="flex items-center">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Rechercher un post"
-          class="flex-grow border border-gray-300 rounded shadow px-4 py-2 mr-4"
-          value="{{ request()->search }}"
-          autofocus
-        />
-        <button
-          type="submit"
-          class="bg-white text-gray-600 px-4 py-2 rounded-lg shadow"
-        >
-          {{-- <x-heroicon-o-magnifying-glass class="h-5 w-5" /> --}}Rechercher
-        </button>
-      </div>
-
-
+        <div class="flex items-center justify-center">
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Rechercher un post"
+              class="flex-grow border border-gray-300 rounded shadow px-4 py-2 mr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value="{{ request()->search }}"
+              autofocus
+            />
+            <button
+              type="submit"
+              class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+            >
+              Rechercher
+            </button>
+        </div>
     </form>
 
-    <ul class="grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
-      @foreach ($posts as $post)
-      <li>
-        <x-post-card :post="$post" />
-      </li>
-      @endforeach
-    </ul>
+    <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
+        @foreach ($posts as $post)
+        <div class="">
+            <x-post-card :post="$post" />
+        </div>
+        @endforeach
+    </div>
 
-    <div class="mt-8">{{ $posts->links() }}</div>
-  </x-app-layout>
+
+    <div class="mt-8 text-center">{{ $posts->links() }}</div>
+</x-app-layout>

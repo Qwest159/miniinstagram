@@ -12,9 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.index')">
-                        {{ __('Bonjour') }}
-                    </x-nav-link>
+
                     <x-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.*')">
                         {{ __('Posts') }}
                     </x-nav-link>

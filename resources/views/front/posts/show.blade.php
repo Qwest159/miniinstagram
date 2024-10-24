@@ -1,14 +1,14 @@
 <x-guest-layout>
-    <h1 class="font-bold text-xl mb-4 capitalize">{{ $post->title }}</h1>
 
     <div class="mb-4 text-xs text-gray-500">
       {{ $post->published_at?->diffForHumans() }}
     </div>
 
     <div class="flex items-center justify-center">
-      <img
+
+        <img
         src="{{ asset('storage/' . $post->img_path) }}"
-        alt="illustration de l'post"
+        alt="illustration du post"
         class="rounded shadow aspect-auto object-cover object-center"
       />
     </div>

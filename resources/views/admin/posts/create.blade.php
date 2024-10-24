@@ -19,19 +19,7 @@
 
                 @csrf
 
-                {{-- <div>
-                    <x-input-label for="title" :value="__('Titre')" />
-                    <x-text-input id="title" class="block mt-1 w-full" type="text" name="title"
-                        :value="old('title')" autofocus />
-                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                </div> --}}
 
-                {{-- <div>
-                    <x-input-label for="published_at" :value="__('Date de publication')" />
-                    <x-text-input id="published_at" class="block mt-1 w-full" type="date" name="published_at"
-                        :value="old('published_at')" />
-                    <x-input-error :messages="$errors->get('published_at')" class="mt-2" />
-                </div> --}}
 
                 <div>
                     <x-input-label for="img" :value="__('Image')" />
