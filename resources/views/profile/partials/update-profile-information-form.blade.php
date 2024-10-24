@@ -23,6 +23,9 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+
+
+
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
@@ -43,9 +46,20 @@
                             {{ __('A new verification link has been sent to your email address.') }}
                         </p>
                     @endif
+
                 </div>
+
             @endif
         </div>
+
+        <div>
+            <x-input-label for="biography" :value="__('Biography')" />
+            <textarea id="biography"
+                class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                name="biography" rows="10">{{ old('biography', $user->biography) }}</textarea>
+            <x-input-error :messages="$errors->get('biography')" class="mt-2" />
+        </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

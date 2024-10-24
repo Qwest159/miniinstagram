@@ -25,7 +25,7 @@ class PostCreateRequest extends FormRequest
     {
         return [
             'body' => 'required|max:300',
-            'img' => 'nullable|image|max:2048',
+            'img' => 'required|image|max:2048',
         ];
     }
 }

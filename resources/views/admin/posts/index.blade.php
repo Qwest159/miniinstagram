@@ -13,13 +13,12 @@
               <div class="text-2xl">Liste des posts</div>
 
               <div class="flex  items-center justify-center space-x-8">
-                <a
-                  href="{{ route('posts.create') }}"
-                  class="text-gray-500 font-bold py-2 px-4 rounded hover:bg-gray-200 transition flex items-center"
-                >
-                <x-heroicon-o-heart class="w-6 h-6 text-red-600" />
-                  Ajouter un post
-                </a>
+                  <a
+          href="{{ route('posts.create') }}"
+          class="text-white bg-blue-500 font-bold py-2 px-4 rounded hover:bg-blue-600 transition flex items-center"
+        >
+          Ajouter un post
+        </a>
               </div>
             </div>
 

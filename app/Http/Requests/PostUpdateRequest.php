@@ -22,8 +22,8 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|string' . $this->route('post')->id,
-            'img' => 'nullable|image|max:2048',
+            'body' => 'required|max:300',
+            'img' => $this->isMethod('post') ? 'required|image|max:2048' : 'nullable|image||max:2048',
         ];
     }
 }

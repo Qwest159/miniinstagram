@@ -13,6 +13,11 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
 
+
+                        <x-nav-link :href="route('profil_perso.index')" :active="request()->routeIs('profil_perso.index')">
+                            {{ __('Profil') }}
+                        </x-nav-link>
+
                     <x-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.*')">
                         {{ __('Posts') }}
                     </x-nav-link>
@@ -36,7 +41,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Paramètre') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -68,8 +73,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.index')">
-                {{ __('front.posts.index') }}
+            <x-responsive-nav-link :href="route('profil_perso.index')" :active="request()->routeIs('profil_perso')">
+                {{ __('Profil') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.*')">
@@ -86,7 +91,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Paramètre') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

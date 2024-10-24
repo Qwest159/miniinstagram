@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
-
+use App\Http\Controllers\Profil_persoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -15,13 +15,9 @@ Route::get('/', function () {
 //ADMIN
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('/posts', AdminPostController::class);
-
     // Gestion des utilisateurs (Détails et changement de rôle)
     Route::resource('/users', UserController::class);
 });
-// Route::get('/accueil', function () {
-//     return view('accueil');
-// })->middleware(['auth', 'verified'])->name('accueil');
 
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('front.posts.index');
 
@@ -31,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/posts', [PostController::class, 'index'])->name('front.posts.index');
     Route::get('/posts/{id}', [PostController::class, 'show'])->name('front.posts.show');
+    Route::get('/profil', [Profil_persoController::class, 'index'])->name('profil_perso.index');
+    Route::get('/profil/{id}', [Profil_persoController::class, 'show'])->name('profil_perso.show');
 });
 
 require __DIR__ . '/auth.php';

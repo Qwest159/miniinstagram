@@ -47,21 +47,24 @@ class PostController extends Controller
     {
         Gate::authorize('create', Post::class);
         // On crée un nouvel Post
-        $Post = Post::make();
+        $post = Post::make();
 
-        // On ajoute les propriétés de l'Post
-        $Post->body = $request->validated()['body'];
-        $Post->user_id = Auth::id();
+        // On ajoute les propriétés du post
+        $post->body = $request->validated()['body'];
+        $post->user_id = Auth::id();
 
 
         // Si il y a une image, on la sauvegarde
         if ($request->hasFile('img')) {
             $path = $request->file('img')->store('posts', 'public');
-            $Post->img_path = $path;
+            $post->img_path = $path;
         }
 
-        // On sauvegarde l'Post en base de données
-        $Post->save();
+
+
+
+        // On sauvegarde le post en base de données
+        $post->save();
 
         return redirect()->route('front.posts.index');
     }
@@ -91,7 +94,7 @@ class PostController extends Controller
     public function update(PostUpdateRequest $request, Post $post)
     {
         Gate::authorize('update', $post);
-        // On modifies les propriétés de l'Post
+
         $post->body = $request->validated()['body'];
 
         // Si il y a une image, on la sauvegarde
