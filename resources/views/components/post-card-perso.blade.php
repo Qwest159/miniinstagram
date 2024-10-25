@@ -1,8 +1,8 @@
-@if($post->user_id === Auth::id() )
+
     <div class="flex flex-col h-full space-y-4 bg-white rounded-md shadow-md p-5 w-full">
 
         <a href="{{ route('front.posts.show', $post->id) }}">
-        <figure>   <img src="{{ Storage::url($post->img_path) }}" alt="illlustration du post"></figure>
+        <figure>   <img src="{{ Storage::url($post->img_path) }}" alt="illustration du post"></figure>
 
             <div class="flex-grow text-gray-700 text-sm text-justify">
                 {{ Str::limit($post->body, 120) }}
@@ -55,4 +55,4 @@
         </form>
       </x-modal>
 
-@endif
+

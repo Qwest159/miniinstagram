@@ -24,6 +24,25 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
+    public function updateAvatar(Request $request): RedirectResponse
+    {
+        // Validation de l'image sans passer par une form request
+        $request->validate([
+            'avatar' => ['required', 'image', 'max:2048'],
+        ]);
+
+        // Si l'image est valide, on la sauvegarde
+        if ($request->hasFile('avatar')) {
+            $user = $request->user();
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar_path = $path;
+            $user->save();
+        }
+
+        return Redirect::route('profile.edit')->with('status', 'avatar-updated');
+    }
+
+
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $request->user()->fill($request->validated());

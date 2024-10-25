@@ -16,12 +16,16 @@
     <div class="mt-4">{!! \nl2br(e($post->body)) !!}</div>
 
     <div class="flex mt-8">
-      <x-avatar class="h-20 w-20" :user="$post->user" />
-      <div class="ml-4 flex flex-col justify-center">
-        <div class="text-gray-700">{{ $post->user->name }}</div>
-        <div class="text-gray-500">{{ $post->user->email }}</div>
-      </div>
-    </div>
+        <a href="{{ route('profil_perso.show',$post->user->id) }}">
+            <x-avatar class="h-20 w-20" :user="$post->user" />
+                <div class="ml-4 flex flex-col justify-center">
+                  <div class="text-gray-700">{{ $post->user->name }}</div>
+                  <div class="text-gray-500">{{ $post->user->email }}</div>
+                  <div class="text-gray-500">{{ $post->user->biography }}</div>
+                </div>
+              </div>
+        </a>
+
 
     <div class="mt-8 flex items-center justify-center">
       <a
