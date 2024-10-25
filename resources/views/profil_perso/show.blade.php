@@ -1,6 +1,4 @@
-<x-guest-layout>
-
-
+<x-app-layout>
     <div class="flex mt-8">
         <x-avatar class="h-20 w-20 mb-4" :user="$user" />
         <div class="ml-4 flex flex-col justify-center">
@@ -33,12 +31,9 @@
         @foreach ($posts as $post)
         <div class="">
 
-            <x-post-card-perso :post="$post" />
+            <x-post-card :post="$post" />
         </div>
         @endforeach
     </div>
 
-
-
-
-  </x-guest-layout>
+  </x-app-layout>

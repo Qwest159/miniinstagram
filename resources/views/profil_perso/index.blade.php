@@ -10,16 +10,7 @@
 
     <h1 class="font-bold text-3xl mb-4 text-center">Mon profil</h1>
 
-{{--
 
-    <div class="flex mt-8">
-        <x-avatar class="h-20 w-20" :user="Auth::user()->user" />
-        <div class="ml-4 flex flex-col justify-center">
-          <div class="text-gray-700">{{ Auth::user()->name }}</div>
-          <div class="text-gray-500">{{ Auth::user()->email }}</div>
-          <div class="text-gray-500">{{ Auth::user()->biography }}</div>
-        </div>
-      </div> --}}
 
       <div class="flex mt-8">
         <x-avatar class="h-20 w-20 mb-4" :user="$user" />
@@ -30,12 +21,7 @@
         </div>
       </div>
 
-
-
-
-
       <form action="{{ route('profil_perso.index', $user->id) }}" method="GET" class="mb-4">
-
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -59,11 +45,9 @@
         @foreach ($posts as $post)
         <div class="">
 
-            <x-post-card-perso :post="$post" />
+            <x-post-card :post="$post" />
         </div>
         @endforeach
     </div>
-
-
     <div class="mt-8 text-center">{{ $posts->links() }}</div>
 </x-app-layout>

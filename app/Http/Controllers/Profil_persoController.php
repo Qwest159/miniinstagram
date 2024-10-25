@@ -11,7 +11,6 @@ class Profil_persoController extends Controller
 {
     public function index(Request $request)
     {
-
         $user = User::findOrFail(Auth::id());
         $posts = Post::query()
             ->where('user_id', $user->id) // Récupère uniquement les posts de l'utilisateur authentifié
@@ -55,11 +54,11 @@ class Profil_persoController extends Controller
     // }
     public function show(Request $request, $id)
     {
-        // $user_id = Auth::id();
+
         $user = User::findOrFail($id);
 
         $posts = Post::query()
-            // ->join('users', 'users.id', '=', 'posts.user_id')
+
             ->where('user_id', $user->id)
             ->when($request->query('search'), function ($query) use ($request) {
                 $query->where('body', 'LIKE', '%' . $request->query('search') . '%')

@@ -1,15 +1,20 @@
-<div class="flex flex-col h-full space-y-4 bg-white rounded-md shadow-md p-5 w-full">
-
-
-
+<div class="flex flex-col h-full space-y-4 bg-white rounded-md shadow-md p-5 max-w-xl ">
 
     <a href="{{ route('front.posts.show', $post) }}">
     <figure>   <img src="{{ Storage::url($post->img_path) }}" alt="illllustration du post"></figure>
 
-        <div class="flex-grow text-gray-700 text-sm text-justify">
-            {{ Str::limit($post->body, 120) }}
-            </div>
-            </a>
+    <div class="mt-4 flex">
+        <a href="{{ route('profil_perso.show', $post->user->id) }}" class="group justify-items-center text-center">
+            <x-avatar class="h-16 w-16" :user="$post->user" />
+            <span class="text-xl font-semibold text-red-600 transition duration-200 group-hover:text-red-700 group-hover:underline underline-offset-2">
+                {{ \nl2br(e($post->user->name)) }}
+            </span>
+        </a>
+        <p class="text-gray-700 pl-5 max-w-[85%] break-words">{{ Str::limit(\nl2br(e($post->body)), 150) }}</p>
+    </div>
+
+
+            @if ($post->user_id === Auth::id())
             <div class="flex">
                 <a
                 href="{{ route('posts.edit', $post->id) }}"
@@ -17,7 +22,6 @@
             >
                 <x-heroicon-o-pencil class="w-5 h-5" />
             </a>
-
             <button
                 x-data="{ id: {{ $post->id }} }"
                 x-on:click.prevent="window.selected = id; $dispatch('open-modal', 'confirm-post-deletion');"
@@ -26,8 +30,9 @@
             >
                 <x-heroicon-o-trash class="w-5 h-5" />
             </button>
-            </a>
-        </div>
+            </a></div>
+            @endif
+
 </div>
 <x-modal name="confirm-post-deletion" focusable>
     <form
