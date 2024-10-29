@@ -4,10 +4,11 @@
         <div class="ml-4 flex flex-col justify-center">
           <div class="text-gray-700">{{ $user->name }}</div>
           <div class="text-gray-500">{{ $user->email }}</div>
+          <div class="text-gray-500">{{ $user->biography }}</div>
         </div>
       </div>
 
-    <form action="{{ route('profil_perso.show',$user->id) }}" method="GET" class="mb-4">
+    <form action="{{ route('profile.show',$user->id) }}" method="GET" class="mb-4">
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -28,12 +29,13 @@
     </form>
 
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
-        @foreach ($posts as $post)
-        <div class="">
-
-            <x-post-card :post="$post" />
-        </div>
-        @endforeach
+      @forelse ($posts as $post)
+      <div class="">
+          <x-post-card :post="$post" />
+      </div>
+        @empty
+        <div class="text-gray-700">Aucun posts</div>
+        @endforelse
     </div>
 
   </x-app-layout>

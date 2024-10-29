@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Profil_persoController;
+use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Follower;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,15 +24,33 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 Route::get('/posts', [PostController::class, 'index'])->middleware(['auth', 'verified'])->name('front.posts.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::patch('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
 
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/edit', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/avatar/edit', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    // profil_perso
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+
+    //post
     Route::get('/posts', [PostController::class, 'index'])->name('front.posts.index');
     Route::get('/posts/{id}', [PostController::class, 'show'])->name('front.posts.show');
-    Route::get('/profil', [Profil_persoController::class, 'index'])->name('profil_perso.index');
-    Route::get('/profil/{id}', [Profil_persoController::class, 'show'])->name('profil_perso.show');
+
+
+    // comments
+    Route::post('/posts/{post}/comments', [PostController::class, 'addComment'])->name('front.posts.comments.add');
+    // Suppression d'un commentaire
+    Route::delete('/posts/{post}/comments/{comment}', [PostController::class, 'deleteComment'])->name('front.posts.comments.delete');
+
+    // like //
+
+    Route::post('/posts/{post}/likes', [LikeController::class, 'addandremoveLike'])->name('front.posts.likes.addandremove');
+
+    // Abonné
+    Route::get('/profile/{id}/follower', [FollowerController::class, 'followerfollowed'])->name('profile.show');
 });
 
 require __DIR__ . '/auth.php';

@@ -32,11 +32,13 @@
 
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
         @foreach ($posts as $post)
-        <div class="">
+
             <x-post-card :post="$post" />
-        </div>
+
+
         @endforeach
     </div>
+
 
 
     <div class="mt-8 text-center">{{ $posts->links() }}</div>

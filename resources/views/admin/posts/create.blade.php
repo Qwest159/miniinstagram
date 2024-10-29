@@ -18,9 +18,6 @@
                 enctype="multipart/form-data">
 
                 @csrf
-
-
-
                 <div>
                     <x-input-label for="img" :value="__('Image')" />
                     <x-text-input id="img" class="block mt-1 w-full" type="file" name="img" />

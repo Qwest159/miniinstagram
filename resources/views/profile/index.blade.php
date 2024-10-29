@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <form action="{{ route('profil_perso.index', $user->id) }}" method="GET" class="mb-4">
+      <form action="{{ route('profile.index', $user->id) }}" method="GET" class="mb-4">
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -42,12 +42,15 @@
     </form>
 
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
-        @foreach ($posts as $post)
-        <div class="">
-
-            <x-post-card :post="$post" />
-        </div>
-        @endforeach
+        <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
+            @forelse ($posts as $post)
+            <div class="">
+                <x-post-card :post="$post" />
+            </div>
+              @empty
+              <div class="text-gray-700">Aucun posts</div>
+              @endforelse
+          </div>
     </div>
     <div class="mt-8 text-center">{{ $posts->links() }}</div>
 </x-app-layout>
