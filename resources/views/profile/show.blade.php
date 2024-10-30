@@ -27,11 +27,11 @@
             </button>
         </div>
     </form>
-
+<x-follow-button :user="$user" :follows="$follows"/>
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
       @forelse ($posts as $post)
       <div class="">
-          <x-post-card :post="$post" />
+          <x-post-card :post="$post"/>
       </div>
         @empty
         <div class="text-gray-700">Aucun posts</div>

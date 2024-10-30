@@ -7,7 +7,7 @@
           Ajouter un post
         </a>
     </div>
-
+    <p>{{ isset($userALL[0]) }}</p>
     <h1 class="font-bold text-3xl mb-4 text-center">Liste des posts</h1>
 
     <form action="{{ route('front.posts.index') }}" method="GET" class="mb-4">
@@ -30,14 +30,23 @@
         </div>
     </form>
 
+
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
         @foreach ($posts as $post)
-
             <x-post-card :post="$post" />
-
-
         @endforeach
     </div>
+
+
+    @if (isset($userALL[0]) )
+        <h1 class="font-bold text-3xl mb-4 text-center pt-5">Les profils utilisateurs</h1>
+        @foreach ($userALL as $user)
+            <x-profil-accueil :user="$user" />
+    @endforeach
+    @elseif (request()->query('search'))
+    <h1 class="font-bold text-3xl mb-4 text-center pt-5">Pas de nom utilisateur</h1>
+    @endif
+
 
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
-
+use App\Models\Follower;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -33,13 +33,23 @@ class ProfileController extends Controller
             'user' => $user,
         ]);
     }
+
+
+
     public function show(Request $request, $id)
     {
-
+        $user_connecter = Auth::user()->id;
         $user = User::findOrFail($id);
 
-        $posts = Post::query()
+        $follows = FollowerController::follower($user_connecter, $user);
+        // ->first();
 
+        // difference: exist retourne une booleen et ne transfere que les tables demandées
+        // first va rechercher dans toutes les tables , meme ceux qui ne sont pas demandé
+        // => gain performance
+
+
+        $posts = Post::query()
             ->where('user_id', $user->id)
             ->when($request->query('search'), function ($query) use ($request) {
                 $query->where('body', 'LIKE', '%' . $request->query('search') . '%')
@@ -55,9 +65,9 @@ class ProfileController extends Controller
         return view('profile.show', [
             'posts' => $posts,
             'user' => $user,
+            'follows' => $follows,
         ]);
     }
-
     /**
      * Display the user's profile form.
      */

@@ -1,5 +1,5 @@
 <div class="flex flex-col space-y-4 vg-white rounded-md shadow-md p-8 max-w-xl">
-    <a href="{{ route('front.posts.show', $post) }}">
+    <a href="{{ route('front.posts.show', $post) }}" class="m-auto">
         <figure>
             <img src="{{ Storage::url($post->img_path) }}" alt="illustration du post">
         </figure>
@@ -18,11 +18,11 @@
     </div>
 
     <div>
-        <x-like-button :post="$post" />
+        <x-like-button :post="$post"/>
     </div>
 
-    {{-- Si l'utilisateur est celui qui a créé le post, montre edit et delete --}}
-    @if ($post->user_id === Auth::id())
+    {{-- Si l'utilisateur est celui qui a créé le post ou admin, montre edit et delete --}}
+    @if ($post->user_id === Auth::id() || Auth::user()->role_id === 1  )
         <div class="flex space-x-4 mt-2">
             <a href="{{ route('posts.edit', $post->id) }}" class="text-blue-400">
                 <x-heroicon-o-pencil class="w-5 h-5" />

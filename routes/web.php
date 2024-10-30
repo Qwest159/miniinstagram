@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/likes', [LikeController::class, 'addandremoveLike'])->name('front.posts.likes.addandremove');
 
     // Abonné
-    Route::get('/profile/{id}/follower', [FollowerController::class, 'followerfollowed'])->name('profile.show');
+    Route::post('/profile/{id}/follower', [FollowerController::class, 'followerfollowed'])->name('profile.follower');
 });
 
 require __DIR__ . '/auth.php';

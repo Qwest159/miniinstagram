@@ -22,7 +22,7 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|max:300',
+            'body' => 'required|max:255',
             'img' => $this->isMethod('post') ? 'required|image|max:2048' : 'nullable|image||max:2048',
         ];
     }

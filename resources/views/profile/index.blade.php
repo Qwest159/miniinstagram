@@ -17,7 +17,7 @@
         <div class="ml-4 flex flex-col justify-center">
           <div class="text-gray-700">{{ $user->name }}</div>
           <div class="text-gray-500">{{ $user->email }}</div>
-          <div class="text-gray-500">{{ $user->biography }}</div>
+          <div class="text-gray-500 break-words">{{ $user->biography }}</div>
         </div>
       </div>
 

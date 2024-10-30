@@ -24,7 +24,7 @@ class PostCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|max:300',
+            'body' => 'required|max:255',
             'img' => 'required|image|max:2048',
         ];
     }

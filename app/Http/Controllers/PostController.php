@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -13,6 +14,8 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
+        $usersALL = User::select('id', 'name', 'biography', 'avatar_path')->get();
+        $user = Auth::user();
         $posts = Post::query()
             // ->where('created_at', '<', now())
             ->when($request->query('search'), function ($query) use ($request) {
@@ -26,8 +29,18 @@ class PostController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(12);
 
+
+        $userALL = [];
+        if ($request->query('search')) {
+            $userALL = User::where('name', 'LIKE', '%' . $request->query('search') . '%')->get();
+        }
+        // $liker = LikeController::liker($user);
+
         return view('front.posts.index', [
             'posts' => $posts,
+            'user' => $user,
+            'userALL' => $userALL,
+            // 'liker' => $liker,
         ]);
     }
 
@@ -45,13 +58,6 @@ class PostController extends Controller
 
         ]);
     }
-
-
-
-
-
-
-
     ///////COMMENTS///////
     public function addComment(Request $request, Post $post)
     {

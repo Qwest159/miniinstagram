@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    /////// LIKE   /////////
+
 
     function addandremoveLike(Request $request, Post $post)
     {
@@ -29,5 +29,12 @@ class LikeController extends Controller
             $like->save();
         }
         return redirect()->back();
+    }
+
+    static function liker($user_connecter)
+    {
+        Like::query()
+            ->where("user_id", "=", $user_connecter)
+            ->exists();
     }
 }

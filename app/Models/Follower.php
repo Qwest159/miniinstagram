@@ -9,33 +9,13 @@ class Follower extends Model
 {
     /** @use HasFactory<\Database\Factories\FollowerFactory> */
     use HasFactory;
-
-
-    public function user()
+    public function follower()
     {
-        return $this->belongsTo(user::class, "user_id");
+        return $this->belongsTo(User::class, "follower_id");
     }
 
-    public function user_suivi()
+    public function followed()
     {
-        return $this->belongsTo(user::class, "user_suivi_id");
+        return $this->belongsTo(User::class, "followed_id");
     }
 }
-
-
-// class Article extends Model
-// {
-//     /** @use HasFactory<\Database\Factories\ArticleFactory> */
-//     use HasFactory;
-
-//     public function user()
-//     {
-//         return $this->belongsTo(User::class);
-//     }
-//     protected function casts(): array
-//     {
-//         return [
-//             'published_at' => 'datetime',
-//         ];
-//     }
-// }

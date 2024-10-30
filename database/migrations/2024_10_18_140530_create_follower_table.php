@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('follows', function (Blueprint $table) {
+        Schema::create('followers', function (Blueprint $table) {
             $table->id();
             $table->foreignId("followed_id");
             $table->foreignId("follower_id");
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('follows', function (Blueprint $table) {
+        Schema::table('followers', function (Blueprint $table) {
             //
         });
     }

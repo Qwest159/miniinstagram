@@ -20,27 +20,10 @@
         </a>
         <p class="text-gray-700 pl-5 max-w-[85%] break-words">{{ Str::limit(\nl2br(e($post->body)))}}</p>
 
+ {{-- LIKE  --}}
     </div>
     <x-like-button :post="$post" />
     </div>
-
-    {{-- <div class="flex items-center mt-6 ">
-        <a href="{{ route('profil_perso.show', $post->user->id) }}" class="flex items-center">
-            <x-avatar class="h-16 w-16" :user="$post->user" />
-            <div class="ml-4 flex flex-col justify-center">
-                <div class=" font-semibold text-lg">{{ $post->user->name }}</div>
-                <div class="text-gray-700 ">{{ $post->user->email }}</div>
-                <div class="text-gray-700 ">{{ $post->user->biography }}</div>
-            </div>
-        </a>
-    </div> --}}
-
-
- {{-- LIKE  --}}
-
-
-
-
 
     <div class="mt-8 flex items-center justify-center">
         <a
