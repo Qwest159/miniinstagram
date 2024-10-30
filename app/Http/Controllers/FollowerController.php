@@ -21,7 +21,7 @@ class FollowerController extends Controller
             if ($follower_exist !== null) {
                 $follower_exist->delete();
             } else {
-                $follow = $user->follower()->make(); // Assurez-vous d'utiliser la bonne relation
+                $follow = $user->follower()->make();
                 $follow->follower_id = $user_follower;
                 $follow->followed_id = $user_followed;
                 $follow->save();
@@ -32,11 +32,5 @@ class FollowerController extends Controller
     }
 
 
-    static function follower($user_connecter, $user)
-    {
-        Follower::query()
-            ->where('followed_id', "=", $user->id)
-            ->where("follower_id", "=", $user_connecter)
-            ->exists();
-    }
+    static function follower($user_connecter, $user) {}
 }

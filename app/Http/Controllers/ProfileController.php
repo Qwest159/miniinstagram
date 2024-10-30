@@ -41,7 +41,13 @@ class ProfileController extends Controller
         $user_connecter = Auth::user()->id;
         $user = User::findOrFail($id);
 
-        $follows = FollowerController::follower($user_connecter, $user);
+
+
+        $follows = Follower::query()
+            ->where('followed_id', "=", $user->id)
+            ->where("follower_id", "=", $user_connecter)
+            ->exists();
+        // $follows = FollowerController::follower($user_connecter, $user);
         // ->first();
 
         // difference: exist retourne une booleen et ne transfere que les tables demandées

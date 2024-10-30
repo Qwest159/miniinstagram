@@ -12,13 +12,11 @@
 
 
 
-      <div class="flex mt-8">
-        <x-avatar class="h-20 w-20 mb-4" :user="$user" />
-        <div class="ml-4 flex flex-col justify-center">
+      <div class="flex flex-col w-full pb-5">
+        <div class="w-5 p-5">  <x-avatar class="" :user="$user" /></div>
           <div class="text-gray-700">{{ $user->name }}</div>
           <div class="text-gray-500">{{ $user->email }}</div>
-          <div class="text-gray-500 break-words">{{ $user->biography }}</div>
-        </div>
+          <div class="text-gray-500  break-words">{{ $user->biography }}</div>
       </div>
 
       <form action="{{ route('profile.index', $user->id) }}" method="GET" class="mb-4">

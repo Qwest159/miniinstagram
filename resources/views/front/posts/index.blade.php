@@ -7,7 +7,7 @@
           Ajouter un post
         </a>
     </div>
-    <p>{{ isset($userALL[0]) }}</p>
+
     <h1 class="font-bold text-3xl mb-4 text-center">Liste des posts</h1>
 
     <form action="{{ route('front.posts.index') }}" method="GET" class="mb-4">
@@ -16,7 +16,7 @@
               type="text"
               name="search"
               id="search"
-              placeholder="Rechercher un post"
+              placeholder="Rechercher un post ou un utilisateur"
               class="flex-grow border border-gray-300 rounded shadow px-4 py-2 mr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
               value="{{ request()->search }}"
               autofocus
@@ -39,15 +39,13 @@
 
 
     @if (isset($userALL[0]) )
-        <h1 class="font-bold text-3xl mb-4 text-center pt-5">Les profils utilisateurs</h1>
+        <h1 class="font-bold text-3xl mb-4 text-center pt-5">Le(s) profil(s) utilisateur(s)</h1>
         @foreach ($userALL as $user)
             <x-profil-accueil :user="$user" />
     @endforeach
     @elseif (request()->query('search'))
     <h1 class="font-bold text-3xl mb-4 text-center pt-5">Pas de nom utilisateur</h1>
     @endif
-
-
 
 
     <div class="mt-8 text-center">{{ $posts->links() }}</div>
