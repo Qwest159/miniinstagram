@@ -30,13 +30,29 @@
         </div>
     </form>
 
+{{-- {{$personne_que_jaisuivi}} --}}
+
+
+{{-- @foreach ($posts as $post)
+{{$post}}
+@endforeach --}}
+{{-- @foreach ($tableaux as $tableau)
+{{$tableau}}
+        @endforeach --}}
+
+
+
 
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
-        @foreach ($posts as $post)
-            <x-post-card :post="$post" />
+        @foreach ($personne_que_jaisuivi as $personne_que_jaisuivis)
+            <x-post-card :post="$personne_que_jaisuivis" />
         @endforeach
     </div>
-
+    <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
+        @foreach ($liker as $likers)
+            <x-post-card :post="$likers" />
+        @endforeach
+    </div>
 
     @if (isset($userALL[0]) )
         <h1 class="font-bold text-3xl mb-4 text-center pt-5">Le(s) profil(s) utilisateur(s)</h1>

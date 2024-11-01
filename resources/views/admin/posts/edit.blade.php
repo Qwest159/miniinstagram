@@ -26,7 +26,7 @@
                     <div>
                         <x-input-label for="img" :value="__('Image')" />
                         @if ($post->img_path)
-                            <img src="{{ asset('storage/' . $post->img_path) }}" alt="Image de l'article"
+                            <img src="{{ asset('storage/' . $post->img_path) }}" alt="{{ Str::limit(\nl2br(e($post->body)), 150) }}"
                                 class="aspect-auto h-64 rounded shadow mt-2 mb-4 object-cover object-center">
                         @endif
                         <x-text-input id="img" class="block mt-1 w-full" type="file" name="img" />

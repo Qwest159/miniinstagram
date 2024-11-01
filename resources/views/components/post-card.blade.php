@@ -1,7 +1,7 @@
 <div class="flex flex-col space-y-4 vg-white rounded-md shadow-md p-8 max-w-xl">
     <a href="{{ route('front.posts.show', $post) }}" class="m-auto">
         <figure>
-            <img src="{{ Storage::url($post->img_path) }}" alt="illustration du post">
+            <img src="{{ Storage::url($post->img_path) }}" alt="{{ Str::limit(\nl2br(e($post->body)), 150) }}">
         </figure>
     </a>
 

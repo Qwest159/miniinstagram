@@ -8,7 +8,7 @@
 
         <img
         src="{{ asset('storage/' . $post->img_path) }}"
-        alt="illustration du post"
+        alt="{{ Str::limit(\nl2br(e($post->body)), 150) }}"
         class="rounded shadow aspect-auto object-cover object-center"
       />
       <div class="mt-4 flex">
