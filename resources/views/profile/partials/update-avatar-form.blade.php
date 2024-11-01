@@ -20,12 +20,13 @@
       @csrf @method('patch')
 
       <div class="flex flex-col space-y-2">
-        <x-avatar :user="$user" class="h-20 w-20"></x-avatar>
+        <div class="h-20 w-20 pb-20"><x-avatar :user="$user" class="h-9 w-9"></x-avatar>
+        </div>
 
         <div class="">
           <label
             for="avatar"
-            class="block text-sm font-medium text-gray-700 dark:text-gray-200"
+            class="w-5 block text-sm font-medium text-gray-700 dark:text-gray-200"
           >
             {{ __('Avatar') }}
           </label>

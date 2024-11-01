@@ -1,14 +1,7 @@
 <x-app-layout>
-    <div class="flex items-center justify-center space-x-8 mb-6">
-        <a
-          href="{{ route('posts.create') }}"
-          class="text-white bg-blue-500 font-bold py-2 px-4 rounded hover:bg-blue-600 transition flex items-center"
-        >
-          Ajouter un post
-        </a>
-    </div>
 
-    <h1 class="font-bold text-3xl mb-4 text-center">Liste des posts</h1>
+
+
 
     <form action="{{ route('front.posts.index') }}" method="GET" class="mb-4">
         <div class="flex items-center justify-center">
@@ -30,27 +23,20 @@
         </div>
     </form>
 
-{{-- {{$personne_que_jaisuivi}} --}}
-
-
-{{-- @foreach ($posts as $post)
-{{$post}}
-@endforeach --}}
-{{-- @foreach ($tableaux as $tableau)
-{{$tableau}}
-        @endforeach --}}
-
-
-
-
+    <h1 class="font-bold text-3xl mb-4 text-center">Liste des posts</h1>
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
-        @foreach ($personne_que_jaisuivi as $personne_que_jaisuivis)
-            <x-post-card :post="$personne_que_jaisuivis" />
-        @endforeach
+        {{-- (si pas de pagination ou pagination différente de 1) et qu'il n'y a pas de recherche en cours => évite le doublon --}}
+
+        @if(($likers->isEmpty() || $likers->currentPage() === 1) && request('search') === null)
+            @foreach ($i_followed as $follows)
+                <x-post-card :post="$follows" />
+            @endforeach
+        @endif
     </div>
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
-        @foreach ($liker as $likers)
-            <x-post-card :post="$likers" />
+        @foreach ($likers as $liker)
+
+            <x-post-card :post="$liker" />
         @endforeach
     </div>
 
@@ -64,5 +50,7 @@
     @endif
 
 
-    <div class="mt-8 text-center">{{ $posts->links() }}</div>
+    <div class="mt-8 text-center">{{ $likers->links() }}</div>
+
+
 </x-app-layout>

@@ -32,26 +32,27 @@ class PostController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(12);
 
-
         // id des personne suivi
-        $personne_que_jaisuivi = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at')
-            ->when($request->query('search'), function ($query) use ($request) {
-                $query->where('body', 'LIKE', '%' . $request->query('search') . '%')
-
-                    ->orWhereHas('user', function ($query) use ($request) {
-                        $query->where('name', 'LIKE', '%' . $request->query('search') . '%');
-                    })
-                ;
-            })
+        $i_followed = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at')
             ->join('users', 'users.id', '=', 'posts.user_id')
             ->join('followers', 'users.id', '=', 'followers.followed_id')
             ->where('follower_id', "=", $user->id)
             ->orderByDesc('updated_at')
-            ->paginate(12);
+            ->get();
 
 
-        // nombre de like du + au -
-        $liker = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id')
+        // recup les id des post.id des abonnés, pour éviter un doublon de post pour likers
+        $follows_post_id = Post::query()
+            ->join('users', 'users.id', '=', 'posts.user_id')
+            ->join('followers', 'users.id', '=', 'followers.followed_id')
+            ->where('follower_id', "=", $user->id)
+            ->pluck('posts.id')
+            ->toArray();
+
+
+        // nombre de like trié du + au -
+        $likers = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at', DB::raw('count(likes.id) as numbers_of_likes'))
+
             ->when($request->query('search'), function ($query) use ($request) {
                 $query->where('body', 'LIKE', '%' . $request->query('search') . '%')
 
@@ -60,29 +61,13 @@ class PostController extends Controller
                     })
                 ;
             })
+            ->whereNotIn('posts.id', $follows_post_id)
             ->leftJoin('likes', 'likes.post_id', '=', 'posts.id')
             ->groupBy('posts.id')
-            ->orderByDesc(DB::raw('COUNT(likes.id)'))
-            ->paginate(12);
+            ->orderByDesc('numbers_of_likes')
+            ->paginate(5);
 
-
-
-        $tableaux = [1, 2, 3];
-        // juste faire une addition de ces deux id qui sont les meme puis afficher les post
-
-
-
-        // $groupedPosts = Post::select('user_id', 'category_id', DB::raw('COUNT(*) as post_count'))
-        // ->groupBy('user_id', 'category_id')
-        // ->orderBy('user_id')
-        // ->orderBy('category_id')
-        // ->get();
-
-
-
-
-
-
+        // affiche les utilisateurs pour le mettre dans un tableau
         $userALL = [];
         if ($request->query('search')) {
             $userALL = User::select('id', 'name', 'biography', 'avatar_path')
@@ -95,9 +80,9 @@ class PostController extends Controller
             'posts' => $posts,
             'user' => $user,
             'userALL' => $userALL,
-            'personne_que_jaisuivi' => $personne_que_jaisuivi,
-            'liker' => $liker,
-            'tableaux' => $tableaux,
+            'i_followed' => $i_followed,
+            'likers' => $likers,
+
         ]);
     }
 
@@ -107,7 +92,7 @@ class PostController extends Controller
         $comments = $post
             ->comments()
             ->with('user')
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->get();
         return view('front.posts.show', [
             'post' => $post,

@@ -58,12 +58,7 @@ class ProfileController extends Controller
         $posts = Post::query()
             ->where('user_id', $user->id)
             ->when($request->query('search'), function ($query) use ($request) {
-                $query->where('body', 'LIKE', '%' . $request->query('search') . '%')
-                    // ->orWhere('title', 'LIKE', '%' . $request->query('search') . '%')
-                    // ->orWhereHas('user', function ($query) use ($request) {
-                    //     $query->where('name', 'LIKE', '%' . $request->query('search') . '%');
-                    // })
-                ;
+                $query->where('body', 'LIKE', '%' . $request->query('search') . '%');
             })
             ->orderByDesc('posts.updated_at')
             ->paginate(12);

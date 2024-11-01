@@ -1,8 +1,5 @@
 <x-app-layout>
 
-    {{-- <div class="mb-4 text-xs text-gray-500">
-      {{ $post->published_at?->diffForHumans() }}
-    </div> --}}
 
     <div class="border-solid bg-slate-300 flex flex-col  justify-center max-w-xl p-5  m-auto">
 

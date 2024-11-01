@@ -10,16 +10,7 @@
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
           <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
             <div class="flex justify-between mt-8">
-              <div class="text-2xl">Liste des posts</div>
 
-              <div class="flex  items-center justify-center space-x-8">
-                  <a
-          href="{{ route('posts.create') }}"
-          class="text-white bg-blue-500 font-bold py-2 px-4 rounded hover:bg-blue-600 transition flex items-center"
-        >
-          Ajouter un post
-        </a>
-              </div>
             </div>
 
             <div class="mt-6 text-gray-500">
@@ -70,32 +61,5 @@
           </div>
         </div>
       </div>
-      <x-modal name="confirm-post-deletion" focusable>
-        <form
-          method="post"
-          onsubmit="event.target.action= '/admin/posts/' + window.selected"
-          class="p-6"
-        >
-          @csrf @method('DELETE')
-
-          <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            Êtes-vous sûr de vouloir supprimer cet post ?
-          </h2>
-
-          <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Cette action est irréversible. Toutes les données seront supprimées.
-          </p>
-
-          <div class="mt-6 flex justify-end">
-            <x-secondary-button x-on:click="$dispatch('close')">
-              Annuler
-            </x-secondary-button>
-
-            <x-danger-button class="ml-3" type="submit">
-              Supprimer
-            </x-danger-button>
-          </div>
-        </form>
-      </x-modal>
     </div>
   </x-app-layout>

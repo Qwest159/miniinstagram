@@ -31,10 +31,10 @@ class LikeController extends Controller
         return redirect()->back();
     }
 
-    static function liker($user_connecter)
-    {
-        Like::query()
-            ->where("user_id", "=", $user_connecter)
-            ->exists();
-    }
+    // static function liker($user_connecter)
+    // {
+    //     Like::query()
+    //         ->where("user_id", "=", $user_connecter)
+    //         ->exists();
+    // }
 }
