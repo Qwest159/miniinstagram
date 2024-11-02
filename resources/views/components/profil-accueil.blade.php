@@ -1,4 +1,4 @@
-
+{{-- affichage des utilisateurs, au sinon affiche autre chose  --}}
 <div class="flex flex-col space-y-4 vg-white rounded-md shadow-md p-8 max-w-xl m-auto">
     <div class="mt-4 flex">
         <a href="{{ route('profile.show', $user->id) }}" class="group justify-items-center text-center">

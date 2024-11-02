@@ -10,15 +10,20 @@ use Illuminate\Support\Facades\Auth;
 
 class FollowerController extends Controller
 {
+    // function pour follow ou unfollow l'utilisateur
     function followerfollowed(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $user_follower = Auth::user()->id;
         $user_followed = $user->id;
+
+        // évite de follow soi-mêmes
         if ($user_followed !== $user_follower) {
             $follower_exist = $user->follower()->where('follower_id', '=', $user_follower)
                 ->first();
-            if ($follower_exist !== null) {
+
+            // existe=> delete ou pas existe=> enregistre le
+            if ($follower_exist) {
                 $follower_exist->delete();
             } else {
                 $follow = $user->follower()->make();

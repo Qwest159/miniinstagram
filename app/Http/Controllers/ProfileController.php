@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    // affichage du profil utilisateur avec ses posts + la recherche de ses posts
     public function index(Request $request)
     {
+
         $user = User::findOrFail(Auth::id());
         $posts = Post::query()
-            ->where('user_id', $user->id) // Récupère uniquement les posts de l'utilisateur authentifié
+            ->where('user_id', $user->id)
             ->when($request->query('search'), function ($query) use ($request) {
                 $query->where('body', 'LIKE', '%' . $request->query('search') . '%');
             })
@@ -35,9 +37,10 @@ class ProfileController extends Controller
     }
 
 
-
+    // montre la vue détaillée du profil de l'utilisateur grâce à un post
     public function show(Request $request, $id)
     {
+
         $user_connecter = Auth::user()->id;
         $user = User::findOrFail($id);
 

@@ -20,7 +20,7 @@ class Role extends Model
             self::AUTHOR,
         ];
     }
-
+    // RELATION
     public function users(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(User::class);

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Follower extends Model
 {
-    /** @use HasFactory<\Database\Factories\FollowerFactory> */
+    // RELATION
     use HasFactory;
     public function follower()
     {

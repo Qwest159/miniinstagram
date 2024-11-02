@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    /** @use HasFactory<\Database\Factories\LikeFactory> */
+    // RELATION
     use HasFactory;
 
     public function user()

@@ -1,8 +1,8 @@
-    @auth
 
  <form action="{{ route('front.posts.likes.addandremove', $post->id) }}" method="POST"
         class="">
         @csrf
+   {{-- gère l'animation du like --}}
         @if    (
             ($post->likes->contains('post_id', $post->id)) &&
             ($post->likes->contains('user_id', auth()->user()->id))
@@ -19,11 +19,5 @@
         @endif
 
     </form>
-@else
-    <div class="flex bg-white rounded-md shadow p-4 text-gray-700 justify-between items-center">
-        <span> Vous devez être connecté </span>
-        <a href="{{ route('login') }}" class="font-bold bg-white text-gray-700 px-4 py-2 rounded shadow-md">Se
-            connecter</a>
-    </div>
-@endauth
+
 

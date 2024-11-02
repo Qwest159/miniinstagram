@@ -46,6 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // RELATION
     public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Role::class);

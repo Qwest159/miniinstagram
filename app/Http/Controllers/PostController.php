@@ -19,6 +19,7 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
+        //pour la recherche et disposition des posts classique
         $user = Auth::user();
         $posts = Post::query()
             ->when($request->query('search'), function ($query) use ($request) {
@@ -32,7 +33,7 @@ class PostController extends Controller
             ->orderByDesc('updated_at')
             ->paginate(12);
 
-        // id des personne suivi
+        // affichage des posts des personnes suivies
         $i_followed = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at')
             ->join('users', 'users.id', '=', 'posts.user_id')
             ->join('followers', 'users.id', '=', 'followers.followed_id')
@@ -50,7 +51,7 @@ class PostController extends Controller
             ->toArray();
 
 
-        // nombre de like trié du + au -
+        // nombre de like trié du + au - sans doublons avec les peronnes suivies
         $likers = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at', DB::raw('count(likes.id) as numbers_of_likes'))
 
             ->when($request->query('search'), function ($query) use ($request) {
@@ -67,7 +68,7 @@ class PostController extends Controller
             ->orderByDesc('numbers_of_likes')
             ->paginate(5);
 
-        // affiche les utilisateurs pour le mettre dans un tableau
+        // affichage des utilisateurs pour le mettre dans un tableau
         $userALL = [];
         if ($request->query('search')) {
             $userALL = User::select('id', 'name', 'biography', 'avatar_path')
@@ -86,6 +87,7 @@ class PostController extends Controller
         ]);
     }
 
+    // function pour montrer la vue détaillée du post avec le commentaire
     public function show($id)
     {
         $post = Post::findOrFail($id);

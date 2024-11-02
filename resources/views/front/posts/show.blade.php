@@ -1,6 +1,6 @@
 <x-app-layout>
 
-
+{{-- Affichage du show grace au controller --}}
     <div class="border-solid bg-slate-300 flex flex-col  justify-center max-w-xl p-5  m-auto">
 
         <img
@@ -33,7 +33,7 @@
     <h2 class="font-bold text-xl mb-4">Commentaires</h2>
 
     <div class="flex-col space-y-4">
-
+{{-- Affichage des commentaires --}}
         @forelse ($post->comments as $comment)
             <div class="flex bg-white rounded-md shadow p-4 space-x-4">
                 <div class="flex justify-start items-start h-full">

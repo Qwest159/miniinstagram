@@ -1,4 +1,4 @@
-
+{{-- si l'utilisateur connecté est différents de celui qui voit le profil --}}
 @if ( Auth::user()->id !== $user->id)
         <form action="{{ route('profile.follower', $user->id) }}" method="POST">
             @csrf

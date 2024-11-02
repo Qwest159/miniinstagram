@@ -1,12 +1,6 @@
 <x-app-layout>
-    <div class="flex flex-col w-full pb-5">
-        <div class="w-5 p-5">  <x-avatar class="" :user="$user" /></div>
-          <div class="text-gray-700">{{ $user->name }}</div>
-          <div class="text-gray-500">{{ $user->email }}</div>
-          <div class="text-gray-500  break-words">{{ $user->biography }}</div>
-      </div>
-
-    <form action="{{ route('profile.show',$user->id) }}" method="GET" class="mb-4">
+       {{-- route pour la recherche de l'utilisateur personnalisé à ses posts--}}
+    <form action="{{ route('profile.index', $user->id) }}" method="GET" class="mb-4">
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -25,6 +19,10 @@
             </button>
         </div>
     </form>
+
+<x-informations-profile :user="$user"></x-informations-profile>
+
+
 <x-follow-button :user="$user" :follows="$follows"/>
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
       @forelse ($posts as $post)
