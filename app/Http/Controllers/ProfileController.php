@@ -30,6 +30,7 @@ class ProfileController extends Controller
             ->paginate(12);
 
 
+
         return view('profile.index', [
             'posts' => $posts,
             'user' => $user,

@@ -1,6 +1,6 @@
 <x-app-layout>
        {{-- route pour la recherche de l'utilisateur personnalisé à ses posts--}}
-    <form action="{{ route('profile.index', $user->id) }}" method="GET" class="mb-4">
+    <form action="{{ route('profile.show', $user->id) }}" method="GET" class="mb-4">
         <div class="flex items-center justify-center">
             <input
               type="text"

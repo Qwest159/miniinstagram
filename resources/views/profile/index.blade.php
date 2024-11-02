@@ -22,7 +22,7 @@
     </form>
 
 <x-informations-profile :user="$user"></x-informations-profile>
-
+<p class="text-gray-700 font-medium">Abonnés : {{ $user->follower()->count() }}</p>
 
     <h1 class="font-bold text-3xl mb-4 text-center">Mon profil</h1>
 

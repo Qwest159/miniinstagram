@@ -23,5 +23,6 @@
         </form>
 
 <!-- Compteur d'abonnés -->
-<p class="text-gray-700 font-medium">Abonnés : {{ $user->follower()->count() }}</p>
+
 @endif
+<p class="text-gray-700 font-medium">Abonnés : {{ $user->follower()->count() }}</p>
