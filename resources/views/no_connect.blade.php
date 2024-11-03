@@ -26,7 +26,10 @@
         </a>
     </nav>
 <main>
- <h1>   CECI EST MON INSTA accueil</h1>
+    <h1 class="max-w-xl m-auto text-center mt-5">
+        Bienvenue sur mon Mini-Instagram, votre plateforme idéale pour partager vos moments préférés, découvrir de nouvelles personnes et vous connecter avec des amis à travers le monde. Plongez dans un univers riche en créativité et en inspiration, où chaque photo raconte une histoire unique.
+    </h1>
+
 </main>
 </body>
 </html>

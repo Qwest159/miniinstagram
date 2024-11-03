@@ -1,6 +1,7 @@
 <x-app-layout>
        {{-- route pour la recherche de l'utilisateur personnalisé à ses posts--}}
     <form action="{{ route('profile.show', $user->id) }}" method="GET" class="mb-4">
+        @csrf
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -26,9 +27,9 @@
 <x-follow-button :user="$user" :follows="$follows"/>
     <div class="grid grid-cols-1 gap-4 max-w-xl  m-auto">
       @forelse ($posts as $post)
-      <div class="">
+
           <x-post-card :post="$post"/>
-      </div>
+
         @empty
         <div class="text-gray-700 text-center">Aucun posts</div>
         @endforelse

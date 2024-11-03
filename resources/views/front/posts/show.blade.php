@@ -1,6 +1,6 @@
 <x-app-layout>
 
-{{-- Affichage du show grace au controller --}}
+{{-- Affichage du show grâce au controller --}}
     <div class="border-solid bg-slate-300 flex flex-col  justify-center max-w-xl p-5  m-auto">
 
         <img

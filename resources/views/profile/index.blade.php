@@ -2,6 +2,7 @@
 
     {{-- route pour la recherche de l'utilisateur personnalisé à ses posts--}}
     <form action="{{ route('profile.index', $user->id) }}" method="GET" class="mb-4">
+        @csrf
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -22,7 +23,11 @@
     </form>
 
 <x-informations-profile :user="$user"></x-informations-profile>
-<p class="text-gray-700 font-medium">Abonnés : {{ $user->follower()->count() }}</p>
+<p class="text-gray-700 font-medium text-lg ml-10">
+    <span class="text-black-500">Followers :</span>
+    <span class="text-blue-600 font-semibold">{{ $user->follower()->count() }}</span>
+</p>
+
 
     <h1 class="font-bold text-3xl mb-4 text-center">Mon profil</h1>
 

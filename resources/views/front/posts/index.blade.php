@@ -2,6 +2,7 @@
 
 {{-- route pour la recherche --}}
     <form action="{{ route('front.posts.index') }}" method="GET" class="mb-4">
+        @csrf
         <div class="flex items-center justify-center">
             <input
               type="text"
@@ -38,6 +39,8 @@
         @endforeach
     </div>
 
+
+    {{-- OPTIONS RECHERCHE --}}
     {{-- affiche les utilisateurs grâce à la recherche et si pas d'utilisateur, alors un message apparait --}}
     @if (isset($userALL[0]) )
         <h1 class="font-bold text-3xl mb-4 text-center pt-5">Le(s) profil(s) utilisateur(s)</h1>

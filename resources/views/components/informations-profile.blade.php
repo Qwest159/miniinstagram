@@ -6,6 +6,14 @@
     </div>
 
     <div class="flex-grow ml-9">
-        <div class="text-gray-500 break-words">{{ $user->biography }}</div>
+        @if ($user->biography !== Null)
+        <p class="text-gray-700 pl-5 max-w-[85%] break-words">
+            {{ Str::limit(\nl2br(e($user->biography)), 150) }}
+        </p>
+        @else
+        <p class="text-gray-700 pl-5 max-w-[85%] break-words">
+            No Biography
+        </p>
+        @endif
     </div>
 </div>

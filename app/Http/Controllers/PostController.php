@@ -18,7 +18,6 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-
         //pour la recherche et disposition des posts classique
         $user = Auth::user();
         $posts = Post::query()

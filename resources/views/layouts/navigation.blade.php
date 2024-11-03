@@ -17,7 +17,7 @@
                         </x-nav-link>
 
                     <x-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.*')">
-                        {{ __('Posts') }}
+                        {{ __('Accueil') }}
                     </x-nav-link>
 
                 </div>
@@ -84,7 +84,7 @@
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('front.posts.index')" :active="request()->routeIs('front.posts.*')">
-                {{ __('Posts') }}
+                {{ __('Accueil') }}
             </x-responsive-nav-link>
 
 
