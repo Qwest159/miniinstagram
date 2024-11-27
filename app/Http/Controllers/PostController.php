@@ -30,7 +30,7 @@ class PostController extends Controller
                 ;
             })
             ->orderByDesc('updated_at')
-            ->paginate(12);
+            ->get();
 
         // affichage des posts des personnes suivies
         $i_followed = Post::query()->select('posts.id', 'posts.body', 'posts.img_path', 'posts.user_id', 'posts.updated_at')
